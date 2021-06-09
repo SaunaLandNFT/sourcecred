@@ -1,0 +1,26 @@
+diff --git a/node_modules/sourcecred/src/ui/components/AccountOverview.js b/node_modules/sourcecred/src/ui/components/AccountOverview.js
+index 2610f18..cc5ff69 100644
+--- a/node_modules/sourcecred/src/ui/components/AccountOverview.js
++++ b/node_modules/sourcecred/src/ui/components/AccountOverview.js
+@@ -71,7 +71,7 @@ export const AccountOverview = ({
+ const AccountRow = (account: Account, suffix: string) => (
+   <TableRow key={account.identity.id}>
+     <TableCell component="th" scope="row">
+-      {account.identity.name}
++      {account.identity.aliases.length ===0 ? account.identity.name : (new DOMParser).parseFromString(account.identity.aliases[0].description.replace(/^discord\//,"").replace(/\#[0-9]*$/,"").replace(/</g,"&lt;").replace(/>/g,"&gt;"),"text/html").documentElement.textContent}
+     </TableCell>
+     <TableCell align="right">{account.active ? "✅" : "🛑"}</TableCell>
+     <TableCell align="right">{G.format(account.balance, 2, suffix)}</TableCell>
+diff --git a/node_modules/sourcecred/src/ui/components/ExplorerHome/ExplorerHome.js b/node_modules/sourcecred/src/ui/components/ExplorerHome/ExplorerHome.js
+index 83aba49..f568c38 100644
+--- a/node_modules/sourcecred/src/ui/components/ExplorerHome/ExplorerHome.js
++++ b/node_modules/sourcecred/src/ui/components/ExplorerHome/ExplorerHome.js
+@@ -623,7 +623,7 @@ export const ExplorerHome = ({
+                         scope="row"
+                         className={classes[`label-${row.identity.subtype}`]}
+                       >
+-                        {row.identity.name}
++                        {row.identity.aliases.length ===0 ? row.identity.name : (new DOMParser).parseFromString(row.identity.aliases[0].description.replace(/^discord\//,"").replace(/\#[0-9]*$/,"").replace(/</g,"&lt;").replace(/>/g,"&gt;"),"text/html").documentElement.textContent}
+                       </TableCell>
+                       <TableCell className={classes.labelCred}>
+                         {Math.round(row.cred).toLocaleString()}
