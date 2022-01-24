@@ -37,7 +37,6 @@ jobs:
           description="This PR was auto-generated on $(date +%d-%m-%Y) \
             to add the latest grain distribution to our instance.
 
-            $(cat grain_output.txt)"
           description="${description//'%'/'%25'}"
           description="${description//$'\n'/'%0A'}"
           description="${description//$'\r'/'%0D'}"
